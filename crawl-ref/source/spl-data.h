@@ -292,7 +292,7 @@ static const struct spell_desc spelldata[] =
 {
     SPELL_MEPHITIC_CLOUD, "Mephitic Cloud",
     SPTYP_CONJURATION | SPTYP_POISON | SPTYP_AIR,
-    SPFLAG_DIR_OR_TARGET | SPFLAG_AREA | SPFLAG_ALLOW_SELF
+    SPFLAG_DIR_OR_TARGET | SPFLAG_AREA
         | SPFLAG_NEEDS_TRACER | SPFLAG_CLOUD,
     3,
     100,
