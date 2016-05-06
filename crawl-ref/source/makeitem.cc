@@ -1931,8 +1931,6 @@ int items(bool allow_uniques,
            || item.base_type == OBJ_JEWELLERY && force_type == NUM_JEWELLERY
            || force_type < get_max_subtype(item.base_type));
 
-    item.quantity = 1;          // generally the case
-
     // make_item_randart() might do things differently based upon the
     // acquirement agent, especially for god gifts.
     if (agent != -1 && !is_stackable_item(item))
@@ -1941,16 +1939,16 @@ int items(bool allow_uniques,
     if (force_ego < SP_FORBID_EGO)
     {
         force_ego = -force_ego;
-        if (get_unique_item_status(force_ego) == UNIQ_NOT_EXISTS)
-        {
-            make_item_unrandart(mitm[p], force_ego);
-            ASSERT(mitm[p].is_valid());
-            return p;
-        }
-        // the base item otherwise
-        item.brand = SPWPN_NORMAL;
-        force_ego = 0;
+        if (get_unique_item_status(force_ego) != UNIQ_NOT_EXISTS)
+            return NON_ITEM;
+
+        item.quantity = 1;
+        make_item_unrandart(mitm[p], force_ego);
+        ASSERT(mitm[p].is_valid());
+        return p;
     }
+
+    item.quantity = 1;          // generally the case
 
     // Determine sub_type accordingly. {dlb}
     switch (item.base_type)
