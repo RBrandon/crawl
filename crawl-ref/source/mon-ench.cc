@@ -1119,7 +1119,7 @@ static bool _apply_grasping_roots(monster* mons)
     bool found_hostile = false;
     for (actor_near_iterator ai(mons, LOS_NO_TRANS); ai; ++ai)
     {
-        if (mons_aligned(mons, *ai) || ai->is_insubstantial()))
+        if (mons_aligned(mons, *ai) || ai->is_insubstantial())
             continue;
 
         found_hostile = true;
